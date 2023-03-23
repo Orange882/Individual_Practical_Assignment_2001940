@@ -149,15 +149,16 @@ public class SecondActivity extends AppCompatActivity {
                                 }
                             }
                         }
-                        for (int score : score_list) {
-                            if (currentIndex + 1 > score) {
+                        for (int score1 : score_list) {
+                            if (currentIndex + 1 + score> score1) {
                                 isGreater = true;
                                 break;
                             }
                         }
 
                         //See whether can enter the scoreboard
-                        if ((score_list.size() < 25 || isGreater) && currentIndex!=0){
+                        if (score_list.size() < 25 || isGreater){
+                            isGreater = false;
                             android.app.AlertDialog.Builder inputName = new android.app.AlertDialog.Builder(SecondActivity.this);
                             final EditText editTextName1 = new EditText(SecondActivity.this);
                             inputName.setTitle("Enter your name");
@@ -298,7 +299,7 @@ public class SecondActivity extends AppCompatActivity {
             });
             builder.setNeutralButton("Home", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int which) {
-                    final String file_name = "game_data6.txt";
+                    final String file_name = "game_data.txt";
 
                     //Read the locally stored scoreboard, see whether the latest score can enter the scoreboard
                     FileInputStream fis = null;
@@ -337,7 +338,7 @@ public class SecondActivity extends AppCompatActivity {
                         }
                     }
                     //See whether can enter the scoreboard
-                    if (score_list.size() < 25){
+                    if ((score_list.size() < 25 || isGreater) && currentIndex!=0){
                         android.app.AlertDialog.Builder inputName = new android.app.AlertDialog.Builder(SecondActivity.this);
                         final EditText editTextName1 = new EditText(SecondActivity.this);
                         inputName.setTitle("Enter your name");
